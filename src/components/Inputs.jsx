@@ -1,8 +1,8 @@
-import React ,{useState} from "react";
-
+import React, { useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { GrLocation } from "react-icons/gr";
 import { toast } from "react-toastify";
+
 function Inputs({ setQuery, units, setUnits }) {
   const [city, setCity] = useState("");
 
@@ -14,13 +14,13 @@ function Inputs({ setQuery, units, setUnits }) {
   const handleSearchClick = () => {
     if (city !== "") {
       setQuery({ q: city });
-      setCity("")
+      setCity("");
     }
   };
 
   const handleLocationClick = () => {
     if (navigator.geolocation) {
-      toast.info("Fetching users location.");
+      toast.info("Fetching user's location.");
       navigator.geolocation.getCurrentPosition((position) => {
         toast.success("Location fetched!");
         let lat = position.coords.latitude;
@@ -33,9 +33,10 @@ function Inputs({ setQuery, units, setUnits }) {
       });
     }
   };
+
   return (
-    <div className="flex flex-row justify-center my-6">
-      <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
+    <div className="flex flex-col sm:flex-row justify-center my-6">
+      <div className="flex flex-row w-full sm:w-3/4 items-center justify-center space-x-2">
         <input
           value={city}
           onChange={(e) => setCity(e.currentTarget.value)}
@@ -55,7 +56,7 @@ function Inputs({ setQuery, units, setUnits }) {
         />
       </div>
 
-      <div className="flex flex-row w-1/4 items-center justify-center">
+      <div className="flex flex-row w-full sm:w-1/4 items-center justify-center space-x-2 mt-4 sm:mt-0">
         <button
           name="metric"
           className="text-xl text-white font-light transition ease-out hover:scale-125"
